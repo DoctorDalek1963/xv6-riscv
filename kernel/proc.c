@@ -174,6 +174,7 @@ freeproc(struct proc *p)
 // Create a user page table for a given process, with no user memory,
 // but with trampoline and trapframe pages.
 pagetable_t
+// allocUserPagetable
 proc_pagetable(struct proc *p)
 {
   pagetable_t pagetable;
@@ -208,6 +209,7 @@ proc_pagetable(struct proc *p)
 // Free a process's page table, and free the
 // physical memory it refers to.
 void
+// freeUserPagetable
 proc_freepagetable(pagetable_t pagetable, uint64 sz)
 {
   uvmunmap(pagetable, TRAMPOLINE, 1, 0);
@@ -217,6 +219,7 @@ proc_freepagetable(pagetable_t pagetable, uint64 sz)
 
 // Set up first user process.
 void
+// startInitProcess
 userinit(void)
 {
   struct proc *p;
@@ -416,6 +419,7 @@ wait(uint64 addr)
 //  - eventually that process transfers control
 //    via swtch back to the scheduler.
 void
+// schedulerThread
 scheduler(void)
 {
   struct proc *p;
@@ -464,6 +468,7 @@ scheduler(void)
 // break in the few places where a lock is held but
 // there's no process.
 void
+// switchToSchedulerThread
 sched(void)
 {
   int intena;

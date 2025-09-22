@@ -108,6 +108,7 @@ walk(pagetable_t pagetable, uint64 va, int alloc)
 // or 0 if not mapped.
 // Can only be used to look up user pages.
 uint64
+// user.virtAddrToPhysAddr
 walkaddr(pagetable_t pagetable, uint64 va)
 {
   pte_t *pte;
@@ -450,6 +451,7 @@ copyinstr(pagetable_t pagetable, char *dst, uint64 srcva, uint64 max)
 // returns 0 if va is invalid or already mapped, or if
 // out of physical memory, and physical address if successful.
 uint64
+// allocAndMapLazyPage
 vmfault(pagetable_t pagetable, uint64 va, int read)
 {
   uint64 ka;

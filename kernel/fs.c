@@ -380,6 +380,7 @@ iunlockput(struct inode *ip)
 // If there is no such block, bmap allocates one.
 // returns 0 if out of disk space.
 static uint
+// diskBlockAddress
 bmap(struct inode *ip, uint bn)
 {
   uint addr, *a;
@@ -620,6 +621,7 @@ dirlink(struct inode *dp, char *name, uint inum)
 //   skipelem("", name) = skipelem("////", name) = 0
 //
 static char*
+// takeFirstName
 skipelem(char *path, char *name)
 {
   char *s;
